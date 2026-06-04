@@ -319,21 +319,28 @@ export default function Hero() {
                 </span>
                 <div className="absolute inset-0 bg-gold-light transform translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
               </motion.button>
-              <button
+              <motion.button
                 onClick={() => {
                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
                   window.dispatchEvent(new CustomEvent('switchContactTab', { detail: 'visit' }));
                 }}
-                className="flex items-center gap-2 text-white/45 hover:text-white/80 transition-colors duration-300"
-                style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.72rem',
-                  letterSpacing: '0.15em',
-                }}
+                className="group relative px-9 py-3.5 overflow-hidden"
+                style={{ background: '#1A9ED4', border: 'none', cursor: 'pointer' }}
+                whileHover={{ scale: 1.02, backgroundColor: '#1565A0' }}
+                whileTap={{ scale: 0.98 }}
               >
-                방문예약
-                <span className="w-5 h-px bg-current" />
-              </button>
+                <span
+                  className="relative z-10"
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '0.78rem',
+                    letterSpacing: '0.18em',
+                    color: '#FFFFFF',
+                  }}
+                >
+                  방문 예약
+                </span>
+              </motion.button>
             </motion.div>
           </motion.div>
         </AnimatePresence>

@@ -89,10 +89,10 @@ export default function Header() {
               </div>
             </a>
 
-            {/* Phone number - center (desktop only) */}
+            {/* Phone number - between logo and nav (desktop only) */}
             <a
               href="tel:16660654"
-              className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2"
+              className="hidden lg:flex items-center gap-2"
               style={{ textDecoration: 'none' }}
             >
               <div

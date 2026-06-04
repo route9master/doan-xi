@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { Check, Phone } from 'lucide-react';
 
-// 시간 슬롯: 09:00 ~ 18:00, 30분 단위
+// 시간 슬롯: 00:00 ~ 23:30, 30분 단위
 const timeSlots: string[] = [];
-for (let h = 9; h <= 18; h++) {
+for (let h = 0; h <= 23; h++) {
   timeSlots.push(`${String(h).padStart(2, '0')}:00`);
-  if (h < 18) timeSlots.push(`${String(h).padStart(2, '0')}:30`);
+  timeSlots.push(`${String(h).padStart(2, '0')}:30`);
 }
 
 export default function Contact() {
@@ -410,7 +410,7 @@ export default function Contact() {
                       </div>
                     </div>
                     <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.68rem', letterSpacing: '0.04em', color: 'rgba(13,33,55,0.5)', marginTop: '6px' }}>
-                      * 방문 가능 시간: 09:00 ~ 18:00 (30분 단위)
+                      ※ 방문예약은 6월 8일부터 가능합니다
                     </p>
                   </div>
 
