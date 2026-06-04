@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 const navItems = [
   { label: '사업개요', href: '#overview' },
-  { label: '입지환경', href: '#location' },
-  { label: '커뮤니티', href: '#community' },
+  { label: '사업위치', href: '#location' },
   { label: '세대안내', href: '#units' },
+  { label: '커뮤니티', href: '#community' },
   { label: '분양안내', href: '#sales' },
   { label: '상담신청', href: '#contact' },
 ];
@@ -86,6 +86,37 @@ export default function Header() {
                 >
                   도안자이 센텀리체
                 </p>
+              </div>
+            </a>
+
+            {/* Phone number - center (desktop only) */}
+            <a
+              href="tel:16660654"
+              className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2"
+              style={{ textDecoration: 'none' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '7px 18px',
+                  border: `1px solid ${scrolled ? 'rgba(26,158,212,0.3)' : 'rgba(255,255,255,0.25)'}`,
+                  background: scrolled ? 'rgba(26,158,212,0.06)' : 'rgba(255,255,255,0.08)',
+                }}
+              >
+                <Phone size={13} style={{ color: scrolled ? '#1A9ED4' : 'rgba(255,255,255,0.8)' }} />
+                <span
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '1rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.08em',
+                    color: scrolled ? '#1A9ED4' : 'rgba(255,255,255,0.9)',
+                  }}
+                >
+                  1666-0654
+                </span>
               </div>
             </a>
 
@@ -174,6 +205,34 @@ export default function Header() {
               </button>
             </div>
             <div className="flex flex-col items-center justify-center flex-1 gap-6">
+              {/* Phone number in mobile menu */}
+              <motion.a
+                href="tel:16660654"
+                className="flex items-center gap-2"
+                style={{
+                  textDecoration: 'none',
+                  padding: '10px 28px',
+                  border: '1px solid rgba(26,158,212,0.3)',
+                  background: 'rgba(26,158,212,0.06)',
+                  marginBottom: '4px',
+                }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.35 }}
+              >
+                <Phone size={16} style={{ color: '#1A9ED4' }} />
+                <span
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '1.4rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.08em',
+                    color: '#1A9ED4',
+                  }}
+                >
+                  1666-0654
+                </span>
+              </motion.a>
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.href}
@@ -190,7 +249,7 @@ export default function Header() {
                   }}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.35 }}
+                  transition={{ delay: 0.1 + i * 0.07, duration: 0.35 }}
                 >
                   {item.label}
                 </motion.button>
@@ -210,7 +269,7 @@ export default function Header() {
                 }}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.44, duration: 0.35 }}
+                transition={{ delay: 0.54, duration: 0.35 }}
               >
                 상담신청
               </motion.button>

@@ -41,22 +41,11 @@ const slides = [
   },
   {
     id: 3,
-    label: 'PRIME LOCATION',
-    ko: '입지환경',
-    title: '트램',
-    title2: '도보 5분',
-    sub: '대전 도시철도 트램 · 2028년 개통 예정',
-    desc: '트리플 학세권 · 건양대병원\n롯데마트 · NC백화점',
-    imgPC: '/images/hero4.jpg',
-    imgMobile: '/images/hero4.jpg',
-  },
-  {
-    id: 4,
     label: 'MOVE IN 2029',
     ko: '2029년 12월 입주',
     title: '분양',
     title2: '안내',
-    sub: '84㎡ 기준 · 1단지 7억 중반 / 2단지 8억 내외',
+    sub: '2029년 12월 입주 예정 · GS건설 시공',
     desc: '계약금 10% (3차 분납)\n중도금 60% 이자후불',
     imgPC: '/images/hero5.jpg',
     imgMobile: '/images/hero5.jpg',
@@ -105,7 +94,6 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    // Preload remaining hero images
     slides.slice(1).forEach((slide) => {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -222,7 +210,6 @@ export default function Hero() {
                 fontSize: 'clamp(1.1rem, 2.5vw, 1.7rem)',
                 fontWeight: 400,
                 letterSpacing: '0.12em',
-                
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -334,7 +321,8 @@ export default function Hero() {
               </motion.button>
               <button
                 onClick={() => {
-                  document.querySelector('#overview')?.scrollIntoView({ behavior: 'smooth' });
+                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  window.dispatchEvent(new CustomEvent('switchContactTab', { detail: 'visit' }));
                 }}
                 className="flex items-center gap-2 text-white/45 hover:text-white/80 transition-colors duration-300"
                 style={{
@@ -343,7 +331,7 @@ export default function Hero() {
                   letterSpacing: '0.15em',
                 }}
               >
-                사업개요
+                방문예약
                 <span className="w-5 h-px bg-current" />
               </button>
             </motion.div>

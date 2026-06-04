@@ -1,23 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Phone } from 'lucide-react';
 import { useInView } from './useInView';
-
-const priceInfo = [
-  {
-    unit: '1단지',
-    type: '84㎡',
-    price: '7억 중반대',
-    note: '전용 84㎡ 기준 · 층수·향에 따라 상이',
-  },
-  {
-    unit: '2단지',
-    type: '84㎡',
-    price: '8억 내외',
-    note: '전용 84㎡ 기준 · 층수·향에 따라 상이',
-    featured: true,
-  },
-];
 
 const paymentSteps = [
   {
@@ -82,237 +67,178 @@ export default function Sales() {
           >
             분양안내
           </h2>
+          {/* 대표번호 */}
+          <a
+            href="tel:16660654"
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '20px', padding: '10px 22px', border: '1px solid rgba(26,158,212,0.3)', background: 'rgba(26,158,212,0.05)' }}
+          >
+            <Phone size={16} style={{ color: '#1A9ED4' }} />
+            <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1A9ED4' }}>
+              대표전화 1666-0654
+            </span>
+          </a>
         </motion.div>
-
-        {/* Price cards */}
-        <div ref={contentRef} className="grid md:grid-cols-2 gap-4 mb-12">
-          {priceInfo.map((info, i) => (
-            <motion.div
-              key={i}
-              className="relative p-8 lg:p-10 overflow-hidden"
-              style={{
-                background: info.featured
-                  ? 'rgba(26,158,212,0.07)'
-                  : '#FFFFFF',
-                border: `1px solid ${info.featured ? 'rgba(26,158,212,0.3)' : 'rgba(26,158,212,0.15)'}`,
-                boxShadow: '0 2px 16px rgba(26,158,212,0.06)',
-              }}
-              initial={{ opacity: 0, y: 24 }}
-              animate={contentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.12, duration: 0.65 }}
-            >
-              {info.featured && (
-                <div className="absolute top-5 right-5">
-                  <span
-                    style={{
-                      background: '#1A9ED4',
-                      color: '#FFFFFF',
-                      fontFamily: "'Pretendard', sans-serif",
-                      fontSize: '0.52rem',
-                      letterSpacing: '0.2em',
-                      padding: '4px 10px',
-                    }}
-                  >
-                    2단지
-                  </span>
-                </div>
-              )}
-              <p
-                style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.72rem',
-                  letterSpacing: '0.25em',
-                  color: 'rgba(26,158,212,0.9)',
-                  marginBottom: '12px',
-                }}
-              >
-                {info.unit} · {info.type}
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
-                  letterSpacing: '0.04em',
-                  lineHeight: 1.1,
-                  color: '#0D2137',
-                }}
-              >
-                {info.price}
-              </p>
-              <p
-                style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.94rem',
-                  letterSpacing: '0.02em',
-                  color: 'rgba(13,33,55,0.72)',
-                  marginTop: '12px',
-                }}
-              >
-                {info.note}
-              </p>
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
-            </motion.div>
-          ))}
-        </div>
 
         {/* Payment steps */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 24 }}
-          animate={contentInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.25, duration: 0.65 }}
-        >
-          <p
-            style={{
-              fontFamily: "'Pretendard', sans-serif",
-              fontSize: '0.62rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'rgba(26,158,212,0.85)',
-              marginBottom: '24px',
-            }}
+        <div ref={contentRef}>
+          <motion.div
+            className="mb-12"
+            initial={{ opacity: 0, y: 24 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.65 }}
           >
-            PAYMENT SCHEDULE
-          </p>
-          <div className="grid md:grid-cols-3 gap-3">
-            {paymentSteps.map((step, i) => (
-              <motion.div
-                key={i}
-                className="p-6 relative"
-                style={{
-                  background: i === 0 ? 'rgba(26,158,212,0.07)' : '#FFFFFF',
-                  border: `1px solid ${i === 0 ? 'rgba(26,158,212,0.25)' : 'rgba(26,158,212,0.12)'}`,
-                  boxShadow: '0 2px 12px rgba(26,158,212,0.05)',
-                }}
-                initial={{ opacity: 0, x: -16 }}
-                animate={contentInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.35 + i * 0.1, duration: 0.55 }}
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div>
+            <p
+              style={{
+                fontFamily: "'Pretendard', sans-serif",
+                fontSize: '0.62rem',
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'rgba(26,158,212,0.85)',
+                marginBottom: '24px',
+              }}
+            >
+              PAYMENT SCHEDULE
+            </p>
+            <div className="grid md:grid-cols-3 gap-3">
+              {paymentSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  className="p-6 relative"
+                  style={{
+                    background: i === 0 ? 'rgba(26,158,212,0.07)' : '#FFFFFF',
+                    border: `1px solid ${i === 0 ? 'rgba(26,158,212,0.25)' : 'rgba(26,158,212,0.12)'}`,
+                    boxShadow: '0 2px 12px rgba(26,158,212,0.05)',
+                  }}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={contentInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.55 }}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <span
+                        style={{
+                          display: 'block',
+                          fontFamily: "'Pretendard', sans-serif",
+                          fontSize: '0.55rem',
+                          letterSpacing: '0.2em',
+                          color: 'rgba(13,33,55,0.6)',
+                          marginBottom: '4px',
+                        }}
+                      >
+                        STEP {step.step}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'Pretendard', sans-serif",
+                          fontSize: '1rem',
+                          fontWeight: 500,
+                          letterSpacing: '0.05em',
+                          color: '#0D2137',
+                        }}
+                      >
+                        {step.title}
+                      </span>
+                    </div>
                     <span
                       style={{
-                        display: 'block',
                         fontFamily: "'Pretendard', sans-serif",
-                        fontSize: '0.55rem',
-                        letterSpacing: '0.2em',
-                        color: 'rgba(13,33,55,0.6)',
-                        marginBottom: '4px',
+                        fontSize: '2.2rem',
+                        letterSpacing: '0.02em',
+                        lineHeight: 1,
+                        color: '#1A9ED4',
                       }}
                     >
-                      STEP {step.step}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "'Pretendard', sans-serif",
-                        fontSize: '1rem',
-                        fontWeight: 500,
-                        letterSpacing: '0.05em',
-                        color: '#0D2137',
-                      }}
-                    >
-                      {step.title}
+                      {step.percent}
                     </span>
                   </div>
+                  <p
+                    style={{
+                      fontFamily: "'Pretendard', sans-serif",
+                      fontSize: '0.94rem',
+                      lineHeight: 1.8,
+                      color: 'rgba(13,33,55,0.85)',
+                      whiteSpace: 'pre-line',
+                    }}
+                  >
+                    {step.detail}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Conditions table */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4, duration: 0.65 }}
+          >
+            <p
+              style={{
+                fontFamily: "'Pretendard', sans-serif",
+                fontSize: '0.62rem',
+                letterSpacing: '0.28em',
+                textTransform: 'uppercase',
+                color: 'rgba(26,158,212,0.85)',
+                marginBottom: '20px',
+              }}
+            >
+              SALES CONDITIONS
+            </p>
+            <div style={{ border: '1px solid rgba(26,158,212,0.15)' }} className="grid md:grid-cols-2 gap-0">
+              {salesDetails.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex items-start p-4 transition-colors duration-200 hover:bg-gold/5"
+                  style={{
+                    borderBottom: '1px solid rgba(26,158,212,0.1)',
+                    borderRight: i % 2 === 0 ? '1px solid rgba(26,158,212,0.1)' : 'none',
+                  }}
+                >
                   <span
                     style={{
                       fontFamily: "'Pretendard', sans-serif",
-                      fontSize: '2.2rem',
-                      letterSpacing: '0.02em',
-                      lineHeight: 1,
-                      color: '#1A9ED4',
+                      fontSize: '0.75rem',
+                      letterSpacing: '0.05em',
+                      color: 'rgba(26,158,212,0.9)',
+                      flexShrink: 0,
+                      width: '112px',
                     }}
                   >
-                    {step.percent}
+                    {item.label}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Pretendard', sans-serif",
+                      fontSize: '0.94rem',
+                      lineHeight: 1.7,
+                      color: 'rgba(13,33,55,0.85)',
+                      flex: 1,
+                    }}
+                  >
+                    {item.value}
                   </span>
                 </div>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.94rem',
-                    lineHeight: 1.8,
-                    color: 'rgba(13,33,55,0.85)',
-                    whiteSpace: 'pre-line',
-                  }}
-                >
-                  {step.detail}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        {/* Conditions table */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={contentInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.55, duration: 0.65 }}
-        >
-          <p
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={contentInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.6, duration: 0.5 }}
             style={{
               fontFamily: "'Pretendard', sans-serif",
-              fontSize: '0.62rem',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'rgba(26,158,212,0.85)',
-              marginBottom: '20px',
+              fontSize: '0.72rem',
+              letterSpacing: '0.04em',
+              lineHeight: 1.9,
+              color: 'rgba(13,33,55,0.6)',
+              marginTop: '24px',
             }}
           >
-            SALES CONDITIONS
-          </p>
-          <div style={{ border: '1px solid rgba(26,158,212,0.15)' }} className="grid md:grid-cols-2 gap-0">
-            {salesDetails.map((item, i) => (
-              <div
-                key={i}
-                className="flex items-start p-4 transition-colors duration-200 hover:bg-gold/5"
-                style={{
-                  borderBottom: '1px solid rgba(26,158,212,0.1)',
-                  borderRight: i % 2 === 0 ? '1px solid rgba(26,158,212,0.1)' : 'none',
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.75rem',
-                    letterSpacing: '0.05em',
-                    color: 'rgba(26,158,212,0.9)',
-                    flexShrink: 0,
-                    width: '112px',
-                  }}
-                >
-                  {item.label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.94rem',
-                    lineHeight: 1.7,
-                    color: 'rgba(13,33,55,0.85)',
-                    flex: 1,
-                  }}
-                >
-                  {item.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={contentInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.75, duration: 0.5 }}
-          style={{
-            fontFamily: "'Pretendard', sans-serif",
-            fontSize: '0.72rem',
-            letterSpacing: '0.04em',
-            lineHeight: 1.9,
-            color: 'rgba(13,33,55,0.6)',
-            marginTop: '24px',
-          }}
-        >
-          * 분양가는 예상가이며 실제 분양가는 입주자 모집공고 시 확정됩니다. 계약금 분납 방식 및 중도금 이자후불제는 변경될 수 있습니다.
-        </motion.p>
+            * 분양 관련 세부사항은 입주자 모집공고 시 확정됩니다. 계약금 분납 방식 및 중도금 이자후불제는 변경될 수 있습니다.
+          </motion.p>
+        </div>
       </div>
     </section>
   );

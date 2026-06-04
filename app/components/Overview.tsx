@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Phone } from 'lucide-react';
 import { useInView, useCountUp } from './useInView';
 
 const stats = [
   { value: 2293, unit: '세대', label: '총 세대수', suffix: '' },
   { value: 42, unit: '층', label: '최고 층수', suffix: '' },
   { value: 2029, unit: '년', label: '입주 예정', suffix: '' },
-  { value: 2, unit: '단지', label: '단지 구성', suffix: '' },
+  { value: 0, unit: '', label: '단지 구성', suffix: '', override: '1,2단지' },
 ];
 
 const infoRows = [
@@ -21,8 +22,8 @@ const infoRows = [
   { label: '입주예정', value: '2029년 12월' },
 ];
 
-function StatCard({ value, unit, label, suffix, delay }: {
-  value: number; unit: string; label: string; suffix: string; delay: number;
+function StatCard({ value, unit, label, suffix, delay, override }: {
+  value: number; unit: string; label: string; suffix: string; delay: number; override?: string;
 }) {
   const { ref, inView } = useInView(0.3);
   const count = useCountUp(value, 1800, inView);
@@ -36,12 +37,20 @@ function StatCard({ value, unit, label, suffix, delay }: {
       transition={{ delay, duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className="relative inline-block mb-3">
-        <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', letterSpacing: '0.04em', lineHeight: 1, color: '#1A9ED4' }}>
-          {count.toLocaleString()}{suffix}
-        </span>
-        <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.9rem', fontWeight: 400, marginLeft: '4px', color: 'rgba(26,158,212,0.9)' }}>
-          {unit}
-        </span>
+        {override ? (
+          <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', letterSpacing: '0.04em', lineHeight: 1, color: '#1A9ED4' }}>
+            {override}
+          </span>
+        ) : (
+          <>
+            <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: 'clamp(2.8rem, 5vw, 4.2rem)', letterSpacing: '0.04em', lineHeight: 1, color: '#1A9ED4' }}>
+              {count.toLocaleString()}{suffix}
+            </span>
+            <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.9rem', fontWeight: 400, marginLeft: '4px', color: 'rgba(26,158,212,0.9)' }}>
+              {unit}
+            </span>
+          </>
+        )}
       </div>
       <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase' as const, color: 'rgba(13,33,55,0.65)' }}>
         {label}
@@ -71,6 +80,16 @@ export default function Overview() {
           <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1rem', lineHeight: 1.9, letterSpacing: '0.03em', color: 'rgba(13,33,55,0.85)', marginTop: '12px' }}>
             GS건설이 시공하는 대전 유성구 프리미엄 주거 단지
           </p>
+          {/* 대표번호 */}
+          <a
+            href="tel:16660654"
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '20px', padding: '10px 22px', border: '1px solid rgba(26,158,212,0.3)', background: 'rgba(26,158,212,0.05)' }}
+          >
+            <Phone size={16} style={{ color: '#1A9ED4' }} />
+            <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1A9ED4' }}>
+              대표전화 1666-0654
+            </span>
+          </a>
         </motion.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 mb-20 pb-16" style={{ borderBottom: '1px solid rgba(26,158,212,0.12)' }}>
