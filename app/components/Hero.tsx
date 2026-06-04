@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
@@ -62,16 +63,19 @@ const slides = [
   },
 ];
 
-function SlideImage({ pc, alt }: { pc: string; alt: string }) {
+function SlideImage({ pc, alt, priority = false }: { pc: string; alt: string; priority?: boolean }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
     <>
       {!loaded && <div className="absolute inset-0" style={{ background: '#0D2137' }} />}
-      <img
+      <Image
         src={pc}
         alt={alt}
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        priority={priority}
+        quality={85}
+        className="object-cover"
         style={{
           filter: 'brightness(0.42) saturate(0.75)',
           opacity: loaded ? 1 : 0,
@@ -99,6 +103,17 @@ export default function Hero() {
       if (p >= 100) clearInterval(progressRef.current!);
     }, 20);
   };
+
+  useEffect(() => {
+    // Preload remaining hero images
+    slides.slice(1).forEach((slide) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = slide.imgPC;
+      document.head.appendChild(link);
+    });
+  }, []);
 
   useEffect(() => {
     startProgress();
@@ -137,7 +152,7 @@ export default function Hero() {
           exit={{ opacity: 0 }}
           transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <SlideImage pc={s.imgPC} alt={s.ko} />
+          <SlideImage pc={s.imgPC} alt={s.ko} priority={s.id === 0} />
         </motion.div>
       </AnimatePresence>
 

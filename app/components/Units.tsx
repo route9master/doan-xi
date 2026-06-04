@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from './useInView';
 
-const XI = 'https://www.xi.co.kr';
-const PLAN = `${XI}/Files/apt_area_kind`;
 
 // 실제 평면도 이미지 URL (공식 xi.co.kr에서 추출)
 const unit1 = [
@@ -284,7 +282,7 @@ function UnitCard({ unit, index, inView }: { unit: UnitType; index: number; inVi
           className="relative overflow-hidden"
           style={{
             height: '180px',
-            background: '#EBF5FB',
+            background: '#F9F0E6',
             borderBottom: '1px solid rgba(26,158,212,0.08)',
           }}
         >
@@ -410,7 +408,7 @@ function UnitCard({ unit, index, inView }: { unit: UnitType; index: number; inVi
               transition={{ duration: 0.28 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ background: '#F0F7FF', border: '1px solid rgba(26,158,212,0.2)', display: 'flex', flexDirection: 'column', height: '90vh' }}>
+              <div style={{ background: '#F9F0E6', border: '1px solid rgba(26,158,212,0.2)', display: 'flex', flexDirection: 'column', height: '90vh' }}>
                 {/* 모달 헤더 */}
                 <div className="flex items-center justify-between px-6 py-4" style={{ borderBottom: '1px solid rgba(26,158,212,0.15)' }}>
                   <div>
@@ -459,7 +457,7 @@ function UnitCard({ unit, index, inView }: { unit: UnitType; index: number; inVi
                       style={{
                         flex: 1,
                         padding: '10px 0',
-                        background: planTab === t.key ? 'rgba(26,158,212,0.1)' : 'transparent',
+                        background: planTab === t.key ? 'rgba(249,240,230,0.95)' : '#F9F0E6',
                         borderTop: 'none',
                         borderLeft: 'none',
                         borderRight: 'none',
@@ -486,7 +484,7 @@ function UnitCard({ unit, index, inView }: { unit: UnitType; index: number; inVi
                   ) : (
                     <div
                       className="w-full h-full flex flex-col items-center justify-center gap-3"
-                      style={{ background: 'rgba(26,158,212,0.04)' }}
+                      style={{ background: '#F9F0E6' }}
                     >
                       <div className="w-8 h-px bg-gold/30" />
                       <p
@@ -506,7 +504,7 @@ function UnitCard({ unit, index, inView }: { unit: UnitType; index: number; inVi
                 </div>
 
                 {/* 하단 스펙 */}
-                <div className="flex gap-6 px-6 py-4" style={{ borderTop: '1px solid rgba(26,158,212,0.15)', background: '#F0F7FF' }}>
+                <div className="flex gap-6 px-6 py-4" style={{ borderTop: '1px solid rgba(26,158,212,0.15)', background: '#F9F0E6' }}>
                   {[
                     { l: '전용', v: unit.area },
                     { l: '공급', v: unit.supply },
