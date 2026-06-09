@@ -27,7 +27,6 @@ const paymentSteps = [
 
 const salesDetails = [
   { label: '공급 유형', value: '민영 일반 분양' },
-  { label: '전매제한', value: '소유권 이전 등기 시까지 (6개월)' },
   { label: '거주의무', value: '해당 없음' },
   { label: '중도금 대출', value: '이자 후불제 (입주 시 정산)' },
   { label: '계약금 분납', value: '1차 1,000만원 → 2차 → 3차 분납' },
@@ -186,13 +185,15 @@ export default function Sales() {
               SALES CONDITIONS
             </p>
             <div style={{ border: '1px solid rgba(26,158,212,0.15)' }} className="grid md:grid-cols-2 gap-0">
-              {salesDetails.map((item, i) => (
+              {salesDetails.map((item, i) => {
+                const isLastOdd = i === salesDetails.length - 1 && salesDetails.length % 2 !== 0;
+                return (
                 <div
                   key={i}
-                  className="flex items-start p-4 transition-colors duration-200 hover:bg-gold/5"
+                  className={`flex items-start p-4 transition-colors duration-200 hover:bg-gold/5${isLastOdd ? ' md:col-span-2' : ''}`}
                   style={{
                     borderBottom: '1px solid rgba(26,158,212,0.1)',
-                    borderRight: i % 2 === 0 ? '1px solid rgba(26,158,212,0.1)' : 'none',
+                    borderRight: i % 2 === 0 && !isLastOdd ? '1px solid rgba(26,158,212,0.1)' : 'none',
                   }}
                 >
                   <span
@@ -219,7 +220,8 @@ export default function Sales() {
                     {item.value}
                   </span>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
 

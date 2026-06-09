@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
-import { Check, Phone } from 'lucide-react';
+import { Check, Phone, Gift, Award } from 'lucide-react';
 
 // 시간 슬롯: 10:00 ~ 18:00, 30분 단위
 const timeSlots: string[] = [];
@@ -161,33 +161,58 @@ export default function Contact() {
               빠르게 안내해 드립니다.
             </p>
 
-            <div className="space-y-3">
-              {[
-                { title: '방문 상담', desc: '모델하우스 방문 시 전담 상담사 안내' },
-                { title: '맞춤 상담', desc: '청약 자격·일정·평형 선택 상담 가능' },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="flex items-start gap-4 p-5"
-                  style={{ background: '#FFFFFF', border: '1px solid rgba(26,158,212,0.15)', boxShadow: '0 2px 12px rgba(26,158,212,0.06)', transition: 'all 0.3s ease' }}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={titleInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.55 }}
-                >
-                  <div style={{ width: '20px', height: '20px', border: '1px solid rgba(26,158,212,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                    <div style={{ width: '6px', height: '6px', background: 'rgba(26,158,212,0.7)' }} />
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={titleInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.55 }}
+              style={{
+                background: 'linear-gradient(135deg, #0D2137 0%, #103460 100%)',
+                border: '1px solid rgba(26,158,212,0.3)',
+                padding: '32px 28px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              {/* 장식 링 */}
+              <div style={{ position: 'absolute', top: 0, right: 0, width: '150px', height: '150px', opacity: 0.07, pointerEvents: 'none' }}>
+                <svg viewBox="0 0 150 150" fill="none">
+                  <circle cx="150" cy="0" r="80" stroke="#1A9ED4" strokeWidth="1"/>
+                  <circle cx="150" cy="0" r="130" stroke="#1A9ED4" strokeWidth="1"/>
+                </svg>
+              </div>
+
+              {/* 배지 */}
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(26,158,212,0.18)', border: '1px solid rgba(26,158,212,0.4)', padding: '5px 14px', marginBottom: '18px' }}>
+                <div style={{ width: '5px', height: '5px', background: '#1A9ED4', borderRadius: '50%' }} />
+                <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.62rem', letterSpacing: '0.22em', color: '#1A9ED4' }}>
+                  SPECIAL BENEFIT
+                </span>
+              </div>
+
+              <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1.25rem', fontWeight: 600, letterSpacing: '0.04em', color: '#FFFFFF', lineHeight: 1.45, marginBottom: '24px' }}>
+                방문 예약 고객<br />
+                <span style={{ color: '#1A9ED4' }}>특별 혜택</span>
+              </p>
+
+              <div style={{ borderTop: '1px solid rgba(26,158,212,0.2)', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div style={{ width: '40px', height: '40px', border: '1px solid rgba(26,158,212,0.4)', background: 'rgba(26,158,212,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Gift size={18} style={{ color: '#1A9ED4' }} />
                   </div>
-                  <div>
-                    <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1rem', fontWeight: 500, letterSpacing: '0.05em', color: '#0D2137', marginBottom: '4px' }}>
-                      {item.title}
-                    </p>
-                    <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.94rem', lineHeight: 1.7, color: 'rgba(13,33,55,0.7)' }}>
-                      {item.desc}
-                    </p>
+                  <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.94rem', letterSpacing: '0.03em', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>
+                    상담완료 시 방문사은품 증정
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div style={{ width: '40px', height: '40px', border: '1px solid rgba(26,158,212,0.4)', background: 'rgba(26,158,212,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Award size={18} style={{ color: '#1A9ED4' }} />
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.94rem', letterSpacing: '0.03em', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>
+                    계약완료 시 백화점상품권 증정
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Right: Tab + Form */}
