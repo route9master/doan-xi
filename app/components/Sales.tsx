@@ -74,7 +74,7 @@ export default function Sales() {
           >
             <Phone size={16} style={{ color: '#1A9ED4' }} />
             <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1A9ED4' }}>
-              대표전화 1666-0654
+              분양문의 1666-0654
             </span>
           </a>
         </motion.div>

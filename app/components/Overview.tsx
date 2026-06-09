@@ -87,7 +87,7 @@ export default function Overview() {
           >
             <Phone size={16} style={{ color: '#1A9ED4' }} />
             <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.1em', color: '#1A9ED4' }}>
-              대표전화 1666-0654
+              분양문의 1666-0654
             </span>
           </a>
         </motion.div>
@@ -123,7 +123,7 @@ export default function Overview() {
           </motion.div>
 
           <motion.div className="relative overflow-hidden" style={{ height: '480px' }} initial={{ opacity: 0, x: 24 }} animate={tableInView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.2, duration: 0.75 }}>
-            <img src="/images/card1.jpg" alt="도안자이 센텀리체" className="w-full h-full object-cover" style={{ filter: 'brightness(0.88) saturate(0.9)' }} />
+            <img src="/images/overview.jpg" alt="도안자이 센텀리체" className="w-full h-full object-cover" style={{ filter: 'brightness(0.88) saturate(0.9)' }} />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,33,55,0.65) 0%, transparent 60%)' }} />
             <div className="absolute bottom-6 left-6 right-6">
               <div className="flex items-center gap-3 mb-2">
