@@ -26,8 +26,9 @@ export default function Footer() {
             </div>
             <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.75rem', lineHeight: 1.95, letterSpacing: '0.02em', color: 'rgba(255,255,255,0.6)' }}>
               대전광역시 유성구 용계동 267-3번지 일원<br />
+              299-7번지 일원<br />
               지하 2층 ~ 지상 최고 42층 / 총 2,293세대<br />
-              입주 예정: 2029년 12월
+              입주 예정: 2029년 10월, 12월
             </p>
           </div>
 

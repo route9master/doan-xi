@@ -13,13 +13,13 @@ const stats = [
 
 const infoRows = [
   { label: '아파트명', value: '도안자이 센텀리체' },
-  { label: '위치', value: '대전광역시 유성구 용계동 267-3번지 일원' },
+  { label: '위치', value: '대전광역시 유성구 용계동 267-3번지 일원\n299-7번지 일원' },
   { label: '시행사', value: '에이치엠도안(26BL) / (주)에이치엠파트너스(30BL)' },
   { label: '시공사', value: 'GS건설 주식회사' },
   { label: '규모', value: '지하 2층 ~ 지상 최고 42층' },
   { label: '세대수', value: '2,293세대 (1단지 1,209 / 2단지 1,084)' },
   { label: '용도', value: '공동주택 (아파트)' },
-  { label: '입주예정', value: '2029년 12월' },
+  { label: '입주예정', value: '2029년 10월, 12월' },
 ];
 
 function StatCard({ value, unit, label, suffix, delay, override }: {
@@ -114,7 +114,7 @@ export default function Overview() {
                   <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.85rem', letterSpacing: '0.05em', color: 'rgba(26,158,212,0.9)', flexShrink: 0, width: '104px' }}>
                     {row.label}
                   </span>
-                  <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.94rem', letterSpacing: '0.02em', color: 'rgba(13,33,55,0.85)', flex: 1 }}>
+                  <span style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.94rem', letterSpacing: '0.02em', color: 'rgba(13,33,55,0.85)', flex: 1, whiteSpace: 'pre-line' }}>
                     {row.value}
                   </span>
                 </motion.div>

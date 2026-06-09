@@ -21,7 +21,7 @@ const paymentSteps = [
     step: '03',
     title: '잔금',
     percent: '30%',
-    detail: '입주 시 납부\n2029년 12월 예정',
+    detail: '입주 시 납부\n2029년 10월, 12월 예정',
   },
 ];
 
@@ -31,7 +31,7 @@ const salesDetails = [
   { label: '거주의무', value: '해당 없음' },
   { label: '중도금 대출', value: '이자 후불제 (입주 시 정산)' },
   { label: '계약금 분납', value: '1차 1,000만원 → 2차 → 3차 분납' },
-  { label: '입주예정일', value: '2029년 12월' },
+  { label: '입주예정일', value: '2029년 10월, 12월' },
 ];
 
 export default function Sales() {

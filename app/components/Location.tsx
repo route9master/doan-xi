@@ -39,9 +39,9 @@ export default function Location() {
             </div>
             <span
               className="hidden lg:block"
-              style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', letterSpacing: '0.08em', color: 'rgba(13,33,55,0.6)' }}
+              style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', letterSpacing: '0.08em', color: 'rgba(13,33,55,0.6)', lineHeight: 1.9 }}
             >
-              267-3번지 일원
+              267-3번지 일원<br />299-7번지 일원
             </span>
           </div>
         </motion.div>

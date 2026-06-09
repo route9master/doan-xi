@@ -12,7 +12,7 @@ const slides = [
     ko: '도안자이 센텀리체',
     title: 'CENTUM',
     title2: 'RICHE',
-    sub: '대전광역시 유성구 용계동 267-3번지 일원',
+    sub: '대전광역시 유성구 용계동 267-3번지 일원\n299-7번지 일원',
     desc: '지하 2층 ~ 지상 최고 42층\n총 2,293세대',
     imgPC: '/images/hero1.jpg',
     imgMobile: '/images/hero1.jpg',
@@ -24,7 +24,7 @@ const slides = [
     title: '자이',
     title2: '브랜드',
     sub: '26BL 에이치엠도안 / 30BL (주)에이치엠파트너스',
-    desc: '총 2,293세대\n입주 예정 2029년 12월',
+    desc: '총 2,293세대\n입주 예정 2029년 10월, 12월',
     imgPC: '/images/hero2.png',
     imgMobile: '/images/hero2.png',
   },
@@ -42,10 +42,10 @@ const slides = [
   {
     id: 3,
     label: 'MOVE IN 2029',
-    ko: '2029년 12월 입주',
+    ko: '2029년 10월, 12월 입주',
     title: '분양',
     title2: '안내',
-    sub: '2029년 12월 입주 예정 · GS건설 시공',
+    sub: '2029년 10월, 12월 입주 예정 · GS건설 시공',
     desc: '계약금 10% (3차 분납)\n중도금 60% 이자후불',
     imgPC: '/images/hero5.jpg',
     imgMobile: '/images/hero5.jpg',
@@ -269,7 +269,7 @@ export default function Hero() {
               transition={{ delay: 0.55, duration: 0.55 }}
             >
               <p
-                className="text-white/55 mb-2"
+                className="text-white/55 mb-2 whitespace-pre-line"
                 style={{
                   fontFamily: "'Pretendard', sans-serif",
                   fontSize: 'clamp(0.88rem, 1.3vw, 1rem)',
