@@ -28,6 +28,12 @@ export default function Header() {
     setMobileOpen(false);
   };
 
+  const scrollToVisit = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+    window.dispatchEvent(new CustomEvent('switchContactTab', { detail: 'visit' }));
+    setMobileOpen(false);
+  };
+
   return (
     <>
       <motion.header
@@ -146,7 +152,7 @@ export default function Header() {
                 </button>
               ))}
               <motion.button
-                onClick={() => scrollTo('#contact')}
+                onClick={scrollToVisit}
                 style={{
                   marginLeft: '12px',
                   padding: '10px 24px',
@@ -161,7 +167,7 @@ export default function Header() {
                 whileHover={{ scale: 1.03, backgroundColor: '#1565A0' }}
                 whileTap={{ scale: 0.97 }}
               >
-                상담신청
+                방문예약
               </motion.button>
             </nav>
 
@@ -255,7 +261,7 @@ export default function Header() {
                 </motion.button>
               ))}
               <motion.button
-                onClick={() => scrollTo('#contact')}
+                onClick={scrollToVisit}
                 style={{
                   marginTop: '16px',
                   padding: '12px 40px',
@@ -271,7 +277,7 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.54, duration: 0.35 }}
               >
-                상담신청
+                방문예약
               </motion.button>
             </div>
           </motion.div>

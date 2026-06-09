@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { Check, Phone } from 'lucide-react';
 
-// 시간 슬롯: 00:00 ~ 23:30, 30분 단위
+// 시간 슬롯: 10:00 ~ 18:00, 30분 단위
 const timeSlots: string[] = [];
-for (let h = 0; h <= 23; h++) {
+for (let h = 10; h <= 18; h++) {
   timeSlots.push(`${String(h).padStart(2, '0')}:00`);
-  timeSlots.push(`${String(h).padStart(2, '0')}:30`);
+  if (h < 18) timeSlots.push(`${String(h).padStart(2, '0')}:30`);
 }
 
 export default function Contact() {
@@ -345,6 +345,43 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
+                  {/* Date + Time */}
+                  <div>
+                    <label className="block mb-2" style={labelStyle}>
+                      방문일시 <span style={{ color: '#1A9ED4', fontSize: '0.78rem' }}>(필수)</span>
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <input
+                          type="date"
+                          min="2025-06-13"
+                          className="form-input w-full px-4 py-3.5"
+                          style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.95rem', cursor: 'pointer' }}
+                          value={visitForm.date}
+                          onChange={(e) => setVisitForm({ ...visitForm, date: e.target.value })}
+                        />
+                        {visitErrors.date && <p style={errorStyle}>{visitErrors.date}</p>}
+                      </div>
+                      <div>
+                        <select
+                          className="form-input w-full px-4 py-3.5"
+                          style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.95rem', cursor: 'pointer', appearance: 'auto' }}
+                          value={visitForm.time}
+                          onChange={(e) => setVisitForm({ ...visitForm, time: e.target.value })}
+                        >
+                          <option value="">시간 선택</option>
+                          {timeSlots.map((t) => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
+                        {visitErrors.time && <p style={errorStyle}>{visitErrors.time}</p>}
+                      </div>
+                    </div>
+                    <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.68rem', letterSpacing: '0.04em', color: 'rgba(13,33,55,0.5)', marginTop: '6px' }}>
+                      ※ 방문예약은 6월 13일부터 가능합니다
+                    </p>
+                  </div>
+
                   {/* Name */}
                   <div>
                     <label className="block mb-2" style={labelStyle}>
@@ -375,43 +412,6 @@ export default function Contact() {
                       onChange={(e) => setVisitForm({ ...visitForm, phone: e.target.value })}
                     />
                     {visitErrors.phone && <p style={errorStyle}>{visitErrors.phone}</p>}
-                  </div>
-
-                  {/* Date + Time */}
-                  <div>
-                    <label className="block mb-2" style={labelStyle}>
-                      방문일시 <span style={{ color: '#1A9ED4', fontSize: '0.78rem' }}>(필수)</span>
-                    </label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <input
-                          type="date"
-                          min="2025-06-08"
-                          className="form-input w-full px-4 py-3.5"
-                          style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.95rem', cursor: 'pointer' }}
-                          value={visitForm.date}
-                          onChange={(e) => setVisitForm({ ...visitForm, date: e.target.value })}
-                        />
-                        {visitErrors.date && <p style={errorStyle}>{visitErrors.date}</p>}
-                      </div>
-                      <div>
-                        <select
-                          className="form-input w-full px-4 py-3.5"
-                          style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.95rem', cursor: 'pointer', appearance: 'auto' }}
-                          value={visitForm.time}
-                          onChange={(e) => setVisitForm({ ...visitForm, time: e.target.value })}
-                        >
-                          <option value="">시간 선택</option>
-                          {timeSlots.map((t) => (
-                            <option key={t} value={t}>{t}</option>
-                          ))}
-                        </select>
-                        {visitErrors.time && <p style={errorStyle}>{visitErrors.time}</p>}
-                      </div>
-                    </div>
-                    <p style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.68rem', letterSpacing: '0.04em', color: 'rgba(13,33,55,0.5)', marginTop: '6px' }}>
-                      ※ 방문예약은 6월 8일부터 가능합니다
-                    </p>
                   </div>
 
                   {/* Privacy */}
