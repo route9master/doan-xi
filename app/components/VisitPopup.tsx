@@ -156,13 +156,13 @@ export default function VisitPopup() {
 
           <h2
             style={{
-              fontFamily: "'Noto Serif KR', serif",
-              fontSize: '1.42rem',
-              fontWeight: 700,
-              letterSpacing: '0.01em',
+              fontFamily: ff,
+              fontSize: '1.7rem',
+              fontWeight: 800,
+              letterSpacing: '-0.03em',
               color: C.text,
               margin: '0 0 7px',
-              lineHeight: 1.25,
+              lineHeight: 1.2,
             }}
           >
             방문예약 <span style={{ color: C.accent }}>사은품</span> 증정
