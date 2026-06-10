@@ -194,7 +194,7 @@ export default function VisitPopup() {
               lineHeight: 1.2,
             }}
           >
-            방문예약 고객 특별 혜택
+            방문예약 고객 특별 혜택 !
           </p>
 
           {/* Benefit row 1 */}
