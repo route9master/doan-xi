@@ -169,57 +169,176 @@ export default function VisitPopup() {
           </p>
         </div>
 
-        {/* ── Image area ── */}
+        {/* ── Benefits section ── */}
         <div
           style={{
+            background: 'linear-gradient(180deg, #0A1E33 0%, #0F2D4A 100%)',
+            padding: '20px 28px 22px',
             position: 'relative',
-            width: '100%',
-            aspectRatio: '16 / 7',
             overflow: 'hidden',
-            background: 'linear-gradient(135deg, #E8F6FD 0%, #B8E5F5 100%)',
           }}
         >
-          {/* Placeholder (always behind) */}
+          {/* Subtle grid */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px',
+              opacity: 0.04,
+              backgroundImage:
+                'linear-gradient(rgba(26,158,212,1) 1px, transparent 1px), linear-gradient(90deg, rgba(26,158,212,1) 1px, transparent 1px)',
+              backgroundSize: '32px 32px',
+              pointerEvents: 'none',
             }}
-          >
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-              <rect x="6" y="14" width="32" height="26" rx="2" stroke="#1A9ED4" strokeWidth="1.5" fill="rgba(26,158,212,0.08)" />
-              <path d="M6 14 L22 5 L38 14" stroke="#1A9ED4" strokeWidth="1.5" strokeLinejoin="round" />
-              <line x1="22" y1="5" x2="22" y2="40" stroke="#1A9ED4" strokeWidth="1" strokeDasharray="2 3" />
-            </svg>
+          />
+
+          {/* Section label row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+            <div style={{ width: '4px', height: '4px', background: '#1A9ED4', borderRadius: '50%', flexShrink: 0 }} />
             <span
               style={{
                 fontFamily: "'Pretendard', sans-serif",
-                fontSize: '0.72rem',
-                letterSpacing: '0.1em',
+                fontSize: '0.6rem',
+                letterSpacing: '0.3em',
                 color: '#1A9ED4',
               }}
             >
-              이미지 준비중
+              SPECIAL BENEFIT
             </span>
+            <div style={{ flex: 1, height: '1px', background: 'rgba(26,158,212,0.2)' }} />
           </div>
-          {/* Actual image on top — hides when file absent */}
-          <img
-            src="/images/gift.jpg"
-            alt="방문 사은품"
+
+          <p
             style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              fontFamily: "'Pretendard', sans-serif",
+              fontSize: '0.98rem',
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              color: '#FFFFFF',
+              marginBottom: '16px',
+              lineHeight: 1.3,
             }}
-            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-          />
+          >
+            방문예약 고객 <span style={{ color: '#1A9ED4' }}>특별 혜택</span>
+          </p>
+
+          {/* Benefit cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
+
+            {/* 혜택 1 — 사은품 */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '14px',
+                background: 'rgba(26,158,212,0.08)',
+                border: '1px solid rgba(26,158,212,0.22)',
+                padding: '13px 16px',
+              }}
+            >
+              <div
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  background: 'rgba(26,158,212,0.14)',
+                  border: '1px solid rgba(26,158,212,0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <rect x="1.5" y="7" width="15" height="9.5" stroke="#1A9ED4" strokeWidth="1.2" />
+                  <rect x="4" y="4.5" width="10" height="2.5" stroke="#1A9ED4" strokeWidth="1.2" />
+                  <path d="M9 4.5 C9 4.5 7.5 2.5 6.5 2.5 C5.5 2.5 4.5 3.3 4.5 4.5 C4.5 5.5 5.5 7 9 7" stroke="#1A9ED4" strokeWidth="1.1" fill="none" />
+                  <path d="M9 4.5 C9 4.5 10.5 2.5 11.5 2.5 C12.5 2.5 13.5 3.3 13.5 4.5 C13.5 5.5 12.5 7 9 7" stroke="#1A9ED4" strokeWidth="1.1" fill="none" />
+                  <line x1="9" y1="4.5" x2="9" y2="16.5" stroke="#1A9ED4" strokeWidth="1.1" />
+                </svg>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.08em',
+                    color: 'rgba(255,255,255,0.48)',
+                    marginBottom: '3px',
+                  }}
+                >
+                  방문예약 후 방문 시
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '1.02rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.03em',
+                    color: '#FFFFFF',
+                    lineHeight: 1,
+                  }}
+                >
+                  <span style={{ color: '#1A9ED4' }}>사은품</span> 증정
+                </p>
+              </div>
+            </div>
+
+            {/* 혜택 2 — 신세계 상품권 */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '14px',
+                background: 'rgba(26,158,212,0.08)',
+                border: '1px solid rgba(26,158,212,0.22)',
+                padding: '13px 16px',
+              }}
+            >
+              <div
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  background: 'rgba(26,158,212,0.14)',
+                  border: '1px solid rgba(26,158,212,0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <rect x="2" y="3.5" width="14" height="9" rx="1" stroke="#1A9ED4" strokeWidth="1.2" />
+                  <line x1="5" y1="7" x2="13" y2="7" stroke="#1A9ED4" strokeWidth="1" />
+                  <line x1="5" y1="9.5" x2="10" y2="9.5" stroke="#1A9ED4" strokeWidth="1" />
+                  <path d="M6 15.5 L9 13.5 L12 15.5" stroke="#1A9ED4" strokeWidth="1.2" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.08em',
+                    color: 'rgba(255,255,255,0.48)',
+                    marginBottom: '3px',
+                  }}
+                >
+                  계약 시
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '1.02rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.03em',
+                    color: '#FFFFFF',
+                    lineHeight: 1,
+                  }}
+                >
+                  <span style={{ color: '#1A9ED4' }}>신세계 상품권</span> 증정
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ── Body ── */}
@@ -263,8 +382,7 @@ export default function VisitPopup() {
                 margin: 0,
               }}
             >
-              방문예약 후 모델하우스 관람고객{' '}
-              <span style={{ color: 'rgba(220,50,50,0.9)', fontWeight: 500 }}>(담당자 지명 필수)</span>
+              방문예약 시 담당자가 안내 전화 드립니다.
             </p>
           </div>
 
@@ -329,6 +447,51 @@ export default function VisitPopup() {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
+              {/* 방문일시 */}
+              <div>
+                <label style={labelStyle}>
+                  방문일시 <span style={{ color: '#1A9ED4' }}>*</span>
+                </label>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <div>
+                    <input
+                      type="date"
+                      min="2026-06-13"
+                      className="form-input w-full px-3 py-3"
+                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer' }}
+                      value={form.date}
+                      onChange={(e) => setForm({ ...form, date: e.target.value })}
+                    />
+                    {errors.date && <p style={errorStyle}>{errors.date}</p>}
+                  </div>
+                  <div>
+                    <select
+                      className="form-input w-full px-3 py-3"
+                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer', appearance: 'auto' }}
+                      value={form.time}
+                      onChange={(e) => setForm({ ...form, time: e.target.value })}
+                    >
+                      <option value="">시간 선택</option>
+                      {timeSlots.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                    {errors.time && <p style={errorStyle}>{errors.time}</p>}
+                  </div>
+                </div>
+                <p
+                  style={{
+                    fontFamily: "'Pretendard', sans-serif",
+                    fontSize: '0.67rem',
+                    letterSpacing: '0.04em',
+                    color: 'rgba(13,33,55,0.45)',
+                    marginTop: '5px',
+                  }}
+                >
+                  ※ 방문예약은 6월 13일부터 가능합니다
+                </p>
+              </div>
 
               {/* 성함 */}
               <div>
@@ -398,51 +561,6 @@ export default function VisitPopup() {
                   />
                 </div>
                 {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
-              </div>
-
-              {/* 방문일시 */}
-              <div>
-                <label style={labelStyle}>
-                  방문일시 <span style={{ color: '#1A9ED4' }}>*</span>
-                </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                  <div>
-                    <input
-                      type="date"
-                      min="2026-06-13"
-                      className="form-input w-full px-3 py-3"
-                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer' }}
-                      value={form.date}
-                      onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    />
-                    {errors.date && <p style={errorStyle}>{errors.date}</p>}
-                  </div>
-                  <div>
-                    <select
-                      className="form-input w-full px-3 py-3"
-                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer', appearance: 'auto' }}
-                      value={form.time}
-                      onChange={(e) => setForm({ ...form, time: e.target.value })}
-                    >
-                      <option value="">시간 선택</option>
-                      {timeSlots.map((t) => (
-                        <option key={t} value={t}>{t}</option>
-                      ))}
-                    </select>
-                    {errors.time && <p style={errorStyle}>{errors.time}</p>}
-                  </div>
-                </div>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.67rem',
-                    letterSpacing: '0.04em',
-                    color: 'rgba(13,33,55,0.45)',
-                    marginTop: '5px',
-                  }}
-                >
-                  ※ 방문예약은 6월 13일부터 가능합니다
-                </p>
               </div>
 
               {/* 개인정보 동의 */}
