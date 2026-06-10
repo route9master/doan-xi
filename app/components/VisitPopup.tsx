@@ -186,11 +186,12 @@ export default function VisitPopup() {
           <p
             style={{
               fontFamily: ff,
-              fontSize: '0.85rem',
-              fontWeight: 400,
-              letterSpacing: '0.04em',
-              color: C.textMid,
-              marginBottom: '16px',
+              fontSize: '1.5rem',
+              fontWeight: 600,
+              letterSpacing: '-0.01em',
+              color: C.text,
+              marginBottom: '20px',
+              lineHeight: 1.2,
             }}
           >
             방문예약 고객 특별 혜택
@@ -202,8 +203,8 @@ export default function VisitPopup() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              gap: '12px',
-              padding: '14px 0',
+              gap: '16px',
+              padding: '20px 0',
               borderTop: `1px solid ${C.divider}`,
             }}
           >
@@ -216,11 +217,11 @@ export default function VisitPopup() {
                 <path d="M6.5 3 C6.5 3 7.5 1.5 8.2 1.5 C9 1.5 9.8 2.2 9.8 3 C9.8 3.7 9 5 6.5 5" stroke={C.textSub} strokeWidth="0.8" fill="none" />
                 <line x1="6.5" y1="3" x2="6.5" y2="12" stroke={C.textSub} strokeWidth="0.8" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.76rem', letterSpacing: '0.04em', color: C.textMid }}>
+              <span style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.04em', color: C.textSub }}>
                 방문예약 후 방문 시
               </span>
             </div>
-            <span style={{ fontFamily: ff, fontSize: '0.9rem', fontWeight: 500, letterSpacing: '0.04em', color: C.text, flexShrink: 0 }}>
+            <span style={{ fontFamily: ff, fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
               사은품 증정
             </span>
           </div>
@@ -231,8 +232,8 @@ export default function VisitPopup() {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              gap: '12px',
-              padding: '14px 0',
+              gap: '16px',
+              padding: '20px 0',
               borderTop: `1px solid ${C.divider}`,
               marginBottom: '0',
             }}
@@ -245,11 +246,11 @@ export default function VisitPopup() {
                 <line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke={C.textSub} strokeWidth="0.8" />
                 <path d="M4.5 11 L6.5 9.5 L8.5 11" stroke={C.textSub} strokeWidth="0.85" strokeLinejoin="round" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.76rem', letterSpacing: '0.04em', color: C.textMid }}>
+              <span style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.04em', color: C.textSub }}>
                 계약 시
               </span>
             </div>
-            <span style={{ fontFamily: ff, fontSize: '0.9rem', fontWeight: 500, letterSpacing: '0.04em', color: C.text, flexShrink: 0 }}>
+            <span style={{ fontFamily: ff, fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
               신세계 상품권 증정
             </span>
           </div>
@@ -264,9 +265,10 @@ export default function VisitPopup() {
           <p
             style={{
               fontFamily: ff,
-              fontSize: '0.74rem',
-              letterSpacing: '0.04em',
-              color: C.textMid,
+              fontSize: '0.84rem',
+              fontWeight: 500,
+              letterSpacing: '0.03em',
+              color: C.accent,
               lineHeight: 1.6,
               marginBottom: '22px',
             }}
