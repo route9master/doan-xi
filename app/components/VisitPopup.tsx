@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check } from 'lucide-react';
 
@@ -37,9 +37,17 @@ export default function VisitPopup() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const phone2Ref = useRef<HTMLInputElement>(null);
   const phone3Ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -67,11 +75,11 @@ export default function VisitPopup() {
 
   const labelStyle: React.CSSProperties = {
     fontFamily: ff,
-    fontSize: '0.72rem',
+    fontSize: isMobile ? '0.66rem' : '0.72rem',
     letterSpacing: '0.1em',
     color: C.textMid,
     display: 'block',
-    marginBottom: '8px',
+    marginBottom: isMobile ? '5px' : '8px',
   };
 
   const errorStyle: React.CSSProperties = {
@@ -84,11 +92,13 @@ export default function VisitPopup() {
 
   const inputStyle: React.CSSProperties = {
     fontFamily: ff,
-    fontSize: '0.88rem',
+    fontSize: isMobile ? '0.82rem' : '0.88rem',
     background: C.inputBg,
     borderColor: C.inputBorder,
     color: C.text,
   };
+
+  const inputPy = isMobile ? 'py-2' : 'py-3';
 
   return (
     <div
@@ -100,7 +110,7 @@ export default function VisitPopup() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '16px',
+        padding: isMobile ? '8px' : '16px',
       }}
       onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
     >
@@ -112,7 +122,7 @@ export default function VisitPopup() {
           background: C.bg,
           width: '100%',
           maxWidth: '456px',
-          maxHeight: '92vh',
+          maxHeight: isMobile ? '95dvh' : '92vh',
           overflowY: 'auto',
           position: 'relative',
           boxShadow: '0 20px 56px rgba(0,0,0,0.16)',
@@ -141,8 +151,8 @@ export default function VisitPopup() {
         </button>
 
         {/* ── Header ── */}
-        <div style={{ padding: '30px 30px 26px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
+        <div style={{ padding: isMobile ? '18px 20px 14px' : '30px 30px 26px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: isMobile ? '12px' : '18px' }}>
             <img
               src="/images/xi_logo_dark.png"
               alt="Xi"
@@ -157,26 +167,26 @@ export default function VisitPopup() {
           <h2
             style={{
               fontFamily: ff,
-              fontSize: '1.7rem',
+              fontSize: isMobile ? '1.4rem' : '1.7rem',
               fontWeight: 800,
               letterSpacing: '-0.03em',
               color: C.text,
-              margin: '0 0 7px',
+              margin: isMobile ? '0 0 5px' : '0 0 7px',
               lineHeight: 1.2,
             }}
           >
             방문예약 <span style={{ color: C.accent }}>사은품</span> 증정
           </h2>
-          <p style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.06em', color: '#2B2B2B', margin: 0 }}>
+          <p style={{ fontFamily: ff, fontSize: isMobile ? '0.8rem' : '0.88rem', fontWeight: 400, letterSpacing: '0.06em', color: '#2B2B2B', margin: 0 }}>
             모델하우스 방문 사전예약
           </p>
         </div>
 
         {/* ── Benefits ── */}
-        <div style={{ borderTop: `1px solid ${C.divider}`, borderBottom: `1px solid ${C.divider}`, padding: '22px 30px 0' }}>
+        <div style={{ borderTop: `1px solid ${C.divider}`, borderBottom: `1px solid ${C.divider}`, padding: isMobile ? '14px 20px 0' : '22px 30px 0' }}>
 
           {/* Section label */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: isMobile ? '8px' : '14px' }}>
             <span style={{ fontFamily: ff, fontSize: '0.57rem', letterSpacing: '0.3em', color: C.accent, flexShrink: 0 }}>
               SPECIAL BENEFIT
             </span>
@@ -186,11 +196,11 @@ export default function VisitPopup() {
           <p
             style={{
               fontFamily: ff,
-              fontSize: '1.5rem',
+              fontSize: isMobile ? '1.2rem' : '1.5rem',
               fontWeight: 600,
               letterSpacing: '-0.01em',
               color: C.text,
-              marginBottom: '20px',
+              marginBottom: isMobile ? '10px' : '20px',
               lineHeight: 1.2,
             }}
           >
@@ -204,7 +214,7 @@ export default function VisitPopup() {
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '16px',
-              padding: '20px 0',
+              padding: isMobile ? '12px 0' : '20px 0',
               borderTop: `1px solid ${C.divider}`,
             }}
           >
@@ -217,11 +227,11 @@ export default function VisitPopup() {
                 <path d="M6.5 3 C6.5 3 7.5 1.5 8.2 1.5 C9 1.5 9.8 2.2 9.8 3 C9.8 3.7 9 5 6.5 5" stroke={C.textSub} strokeWidth="0.8" fill="none" />
                 <line x1="6.5" y1="3" x2="6.5" y2="12" stroke={C.textSub} strokeWidth="0.8" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
-                방문예약 후 방문 시
+              <span style={{ fontFamily: ff, fontSize: isMobile ? '0.82rem' : '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
+                방문예약 고객
               </span>
             </div>
-            <span style={{ fontFamily: ff, fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
+            <span style={{ fontFamily: ff, fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
               사은품 증정
             </span>
           </div>
@@ -233,7 +243,7 @@ export default function VisitPopup() {
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '16px',
-              padding: '20px 0',
+              padding: isMobile ? '12px 0' : '20px 0',
               borderTop: `1px solid ${C.divider}`,
               marginBottom: '0',
             }}
@@ -246,11 +256,11 @@ export default function VisitPopup() {
                 <line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke={C.textSub} strokeWidth="0.8" />
                 <path d="M4.5 11 L6.5 9.5 L8.5 11" stroke={C.textSub} strokeWidth="0.85" strokeLinejoin="round" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
-                계약 시
+              <span style={{ fontFamily: ff, fontSize: isMobile ? '0.82rem' : '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
+                계약 고객
               </span>
             </div>
-            <span style={{ fontFamily: ff, fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
+            <span style={{ fontFamily: ff, fontSize: isMobile ? '1.1rem' : '1.25rem', fontWeight: 700, letterSpacing: '-0.01em', color: C.text, flexShrink: 0 }}>
               신세계 상품권 증정
             </span>
           </div>
@@ -259,18 +269,18 @@ export default function VisitPopup() {
         </div>
 
         {/* ── Body ── */}
-        <div style={{ padding: '24px 30px 30px' }}>
+        <div style={{ padding: isMobile ? '14px 20px 18px' : '24px 30px 30px' }}>
 
           {/* Notice */}
           <p
             style={{
               fontFamily: ff,
-              fontSize: '0.84rem',
+              fontSize: isMobile ? '0.78rem' : '0.84rem',
               fontWeight: 500,
               letterSpacing: '0.03em',
               color: C.accent,
               lineHeight: 1.6,
-              marginBottom: '22px',
+              marginBottom: isMobile ? '14px' : '22px',
             }}
           >
             방문예약 시 담당자가 안내 전화 드립니다.
@@ -338,7 +348,7 @@ export default function VisitPopup() {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '16px' }}>
 
               {/* 방문일시 */}
               <div>
@@ -350,7 +360,7 @@ export default function VisitPopup() {
                     <input
                       type="date"
                       min="2026-06-13"
-                      className="form-input w-full px-3 py-3"
+                      className={`form-input w-full px-3 ${inputPy}`}
                       style={{ ...inputStyle, cursor: 'pointer' }}
                       value={form.date}
                       onChange={(e) => setForm({ ...form, date: e.target.value })}
@@ -359,7 +369,7 @@ export default function VisitPopup() {
                   </div>
                   <div>
                     <select
-                      className="form-input w-full px-3 py-3"
+                      className={`form-input w-full px-3 ${inputPy}`}
                       style={{ ...inputStyle, cursor: 'pointer', appearance: 'auto' }}
                       value={form.time}
                       onChange={(e) => setForm({ ...form, time: e.target.value })}
@@ -372,7 +382,7 @@ export default function VisitPopup() {
                     {errors.time && <p style={errorStyle}>{errors.time}</p>}
                   </div>
                 </div>
-                <p style={{ fontFamily: ff, fontSize: '0.85rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B', marginTop: '6px' }}>
+                <p style={{ fontFamily: ff, fontSize: isMobile ? '0.75rem' : '0.85rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B', marginTop: '5px' }}>
                   ※ 방문예약은 6월 13일부터 가능합니다
                 </p>
               </div>
@@ -385,7 +395,7 @@ export default function VisitPopup() {
                 <input
                   type="text"
                   placeholder="홍길동"
-                  className="form-input w-full px-4 py-3"
+                  className={`form-input w-full px-4 ${inputPy}`}
                   style={inputStyle}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -403,7 +413,7 @@ export default function VisitPopup() {
                     type="text"
                     inputMode="numeric"
                     maxLength={3}
-                    className="form-input px-3 py-3 text-center"
+                    className={`form-input px-3 ${inputPy} text-center`}
                     style={{ ...inputStyle, width: '62px', flexShrink: 0 }}
                     value={form.phone1}
                     onChange={(e) => {
@@ -419,7 +429,7 @@ export default function VisitPopup() {
                     inputMode="numeric"
                     maxLength={4}
                     placeholder="0000"
-                    className="form-input px-3 py-3 text-center"
+                    className={`form-input px-3 ${inputPy} text-center`}
                     style={{ ...inputStyle, flex: 1, minWidth: 0 }}
                     value={form.phone2}
                     onChange={(e) => {
@@ -435,7 +445,7 @@ export default function VisitPopup() {
                     inputMode="numeric"
                     maxLength={4}
                     placeholder="0000"
-                    className="form-input px-3 py-3 text-center"
+                    className={`form-input px-3 ${inputPy} text-center`}
                     style={{ ...inputStyle, flex: 1, minWidth: 0 }}
                     value={form.phone3}
                     onChange={(e) => {
@@ -448,7 +458,7 @@ export default function VisitPopup() {
               </div>
 
               {/* 개인정보 동의 */}
-              <div style={{ borderTop: `1px solid ${C.divider}`, paddingTop: '16px' }}>
+              <div style={{ borderTop: `1px solid ${C.divider}`, paddingTop: isMobile ? '12px' : '16px' }}>
                 <div
                   style={{
                     display: 'flex',
@@ -546,7 +556,7 @@ export default function VisitPopup() {
                 type="submit"
                 style={{
                   width: '100%',
-                  padding: '14px',
+                  padding: isMobile ? '11px' : '14px',
                   background: C.text,
                   color: '#FFFFFF',
                   fontFamily: ff,
