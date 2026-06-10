@@ -156,16 +156,16 @@ export default function VisitPopup() {
 
           <h2
             style={{
-              fontFamily: ff,
+              fontFamily: "'Noto Serif KR', serif",
               fontSize: '1.42rem',
-              fontWeight: 400,
+              fontWeight: 700,
               letterSpacing: '0.01em',
               color: C.text,
               margin: '0 0 7px',
               lineHeight: 1.25,
             }}
           >
-            방문예약 <span style={{ fontWeight: 500 }}>사은품</span> 증정
+            방문예약 <span style={{ color: C.accent }}>사은품</span> 증정
           </h2>
           <p style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.06em', color: '#2B2B2B', margin: 0 }}>
             모델하우스 방문 사전예약
