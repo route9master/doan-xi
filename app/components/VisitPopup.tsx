@@ -167,7 +167,7 @@ export default function VisitPopup() {
           >
             방문예약 <span style={{ fontWeight: 500 }}>사은품</span> 증정
           </h2>
-          <p style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.08em', color: C.textSub, margin: 0 }}>
+          <p style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.06em', color: '#2B2B2B', margin: 0 }}>
             모델하우스 방문 사전예약
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function VisitPopup() {
                 <path d="M6.5 3 C6.5 3 7.5 1.5 8.2 1.5 C9 1.5 9.8 2.2 9.8 3 C9.8 3.7 9 5 6.5 5" stroke={C.textSub} strokeWidth="0.8" fill="none" />
                 <line x1="6.5" y1="3" x2="6.5" y2="12" stroke={C.textSub} strokeWidth="0.8" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.04em', color: C.textSub }}>
+              <span style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
                 방문예약 후 방문 시
               </span>
             </div>
@@ -246,7 +246,7 @@ export default function VisitPopup() {
                 <line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke={C.textSub} strokeWidth="0.8" />
                 <path d="M4.5 11 L6.5 9.5 L8.5 11" stroke={C.textSub} strokeWidth="0.85" strokeLinejoin="round" />
               </svg>
-              <span style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.04em', color: C.textSub }}>
+              <span style={{ fontFamily: ff, fontSize: '0.88rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B' }}>
                 계약 시
               </span>
             </div>
@@ -372,7 +372,7 @@ export default function VisitPopup() {
                     {errors.time && <p style={errorStyle}>{errors.time}</p>}
                   </div>
                 </div>
-                <p style={{ fontFamily: ff, fontSize: '0.64rem', letterSpacing: '0.04em', color: C.textSub, marginTop: '5px' }}>
+                <p style={{ fontFamily: ff, fontSize: '0.85rem', fontWeight: 400, letterSpacing: '0.03em', color: '#2B2B2B', marginTop: '6px' }}>
                   ※ 방문예약은 6월 13일부터 가능합니다
                 </p>
               </div>
