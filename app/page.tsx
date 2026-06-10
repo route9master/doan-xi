@@ -7,10 +7,12 @@ import Units from './components/Units';
 import Sales from './components/Sales';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import VisitPopup from './components/VisitPopup';
 
 export default function Home() {
   return (
     <main>
+      <VisitPopup />
       <Header />
       <Hero />
       <Overview />
