@@ -10,6 +10,19 @@ for (let h = 10; h <= 18; h++) {
   if (h < 18) timeSlots.push(`${String(h).padStart(2, '0')}:30`);
 }
 
+const ff = "'Pretendard', sans-serif";
+
+const C = {
+  bg: '#F7F4EF',
+  text: '#2B2B2B',
+  textMid: 'rgba(43,43,43,0.58)',
+  textSub: 'rgba(43,43,43,0.38)',
+  divider: 'rgba(43,43,43,0.1)',
+  accent: 'rgba(26,158,212,0.65)',
+  inputBg: '#FFFFFF',
+  inputBorder: 'rgba(43,43,43,0.18)',
+};
+
 export default function VisitPopup() {
   const [isOpen, setIsOpen] = useState(true);
   const [form, setForm] = useState({
@@ -53,20 +66,28 @@ export default function VisitPopup() {
   if (!isOpen) return null;
 
   const labelStyle: React.CSSProperties = {
-    fontFamily: "'Pretendard', sans-serif",
-    fontSize: '0.82rem',
+    fontFamily: ff,
+    fontSize: '0.72rem',
     letterSpacing: '0.1em',
-    color: 'rgba(13,33,55,0.75)',
+    color: C.textMid,
     display: 'block',
     marginBottom: '8px',
   };
 
   const errorStyle: React.CSSProperties = {
-    fontFamily: "'Pretendard', sans-serif",
+    fontFamily: ff,
     fontSize: '0.62rem',
-    letterSpacing: '0.05em',
-    color: 'rgba(220,60,60,0.85)',
+    letterSpacing: '0.04em',
+    color: 'rgba(180,50,50,0.85)',
     marginTop: '4px',
+  };
+
+  const inputStyle: React.CSSProperties = {
+    fontFamily: ff,
+    fontSize: '0.88rem',
+    background: C.inputBg,
+    borderColor: C.inputBorder,
+    color: C.text,
   };
 
   return (
@@ -75,7 +96,7 @@ export default function VisitPopup() {
         position: 'fixed',
         inset: 0,
         zIndex: 9000,
-        background: 'rgba(0,0,0,0.65)',
+        background: 'rgba(15,15,15,0.52)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -84,335 +105,203 @@ export default function VisitPopup() {
       onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 16 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.32, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{
-          background: '#FFFFFF',
+          background: C.bg,
           width: '100%',
-          maxWidth: '480px',
+          maxWidth: '456px',
           maxHeight: '92vh',
           overflowY: 'auto',
           position: 'relative',
+          boxShadow: '0 20px 56px rgba(0,0,0,0.16)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+
+        {/* ── Close ── */}
         <button
           onClick={() => setIsOpen(false)}
           aria-label="닫기"
           style={{
             position: 'absolute',
-            top: '14px',
-            right: '14px',
+            top: '16px',
+            right: '18px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
             zIndex: 10,
             padding: '4px',
-            color: 'rgba(255,255,255,0.65)',
+            color: C.textSub,
             lineHeight: 1,
           }}
         >
-          <X size={20} />
+          <X size={17} strokeWidth={1.4} />
         </button>
 
-        {/* ── Header (navy gradient) ── */}
-        <div
-          style={{
-            background: 'linear-gradient(135deg, #0D2137 0%, #103460 100%)',
-            padding: '26px 28px 20px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Decorative rings */}
-          <div style={{ position: 'absolute', top: 0, right: 0, width: '160px', height: '160px', opacity: 0.07, pointerEvents: 'none' }}>
-            <svg viewBox="0 0 160 160" fill="none">
-              <circle cx="160" cy="0" r="80" stroke="#1A9ED4" strokeWidth="1" />
-              <circle cx="160" cy="0" r="130" stroke="#1A9ED4" strokeWidth="1" />
-            </svg>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '7px' }}>
+        {/* ── Header ── */}
+        <div style={{ padding: '30px 30px 26px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '18px' }}>
             <img
-              src="/images/xi_logo.png"
+              src="/images/xi_logo_dark.png"
               alt="Xi"
-              style={{ height: '26px', objectFit: 'contain', flexShrink: 0 }}
+              style={{ height: '18px', objectFit: 'contain', opacity: 0.65, flexShrink: 0 }}
             />
-            <div style={{ width: '1px', height: '22px', background: 'rgba(255,255,255,0.2)', flexShrink: 0 }} />
-            <h2
-              style={{
-                fontFamily: "'Pretendard', sans-serif",
-                fontSize: '1.18rem',
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                color: '#FFFFFF',
-                margin: 0,
-                lineHeight: 1,
-              }}
-            >
-              방문예약 <span style={{ color: '#1A9ED4' }}>사은품</span> 증정
-            </h2>
+            <div style={{ width: '1px', height: '12px', background: C.divider, flexShrink: 0 }} />
+            <span style={{ fontFamily: ff, fontSize: '0.57rem', letterSpacing: '0.3em', color: C.textSub }}>
+              DOAN XI CENTUM RICHEE
+            </span>
           </div>
 
-          <p
+          <h2
             style={{
-              fontFamily: "'Pretendard', sans-serif",
-              fontSize: '0.67rem',
-              letterSpacing: '0.12em',
-              color: 'rgba(255,255,255,0.4)',
-              margin: 0,
+              fontFamily: ff,
+              fontSize: '1.42rem',
+              fontWeight: 400,
+              letterSpacing: '0.01em',
+              color: C.text,
+              margin: '0 0 7px',
+              lineHeight: 1.25,
             }}
           >
-            DOOAN XI CENTRUM RICHEE — 모델하우스 방문 사전예약
+            방문예약 <span style={{ fontWeight: 500 }}>사은품</span> 증정
+          </h2>
+          <p style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.08em', color: C.textSub, margin: 0 }}>
+            모델하우스 방문 사전예약
           </p>
         </div>
 
-        {/* ── Benefits section ── */}
-        <div
-          style={{
-            background: 'linear-gradient(180deg, #0A1E33 0%, #0F2D4A 100%)',
-            padding: '20px 28px 22px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Subtle grid */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              opacity: 0.04,
-              backgroundImage:
-                'linear-gradient(rgba(26,158,212,1) 1px, transparent 1px), linear-gradient(90deg, rgba(26,158,212,1) 1px, transparent 1px)',
-              backgroundSize: '32px 32px',
-              pointerEvents: 'none',
-            }}
-          />
+        {/* ── Benefits ── */}
+        <div style={{ borderTop: `1px solid ${C.divider}`, borderBottom: `1px solid ${C.divider}`, padding: '22px 30px 0' }}>
 
-          {/* Section label row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-            <div style={{ width: '4px', height: '4px', background: '#1A9ED4', borderRadius: '50%', flexShrink: 0 }} />
-            <span
-              style={{
-                fontFamily: "'Pretendard', sans-serif",
-                fontSize: '0.6rem',
-                letterSpacing: '0.3em',
-                color: '#1A9ED4',
-              }}
-            >
+          {/* Section label */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ fontFamily: ff, fontSize: '0.57rem', letterSpacing: '0.3em', color: C.accent, flexShrink: 0 }}>
               SPECIAL BENEFIT
             </span>
-            <div style={{ flex: 1, height: '1px', background: 'rgba(26,158,212,0.2)' }} />
+            <div style={{ flex: 1, height: '1px', background: C.divider }} />
           </div>
 
           <p
             style={{
-              fontFamily: "'Pretendard', sans-serif",
-              fontSize: '0.98rem',
-              fontWeight: 600,
+              fontFamily: ff,
+              fontSize: '0.85rem',
+              fontWeight: 400,
               letterSpacing: '0.04em',
-              color: '#FFFFFF',
+              color: C.textMid,
               marginBottom: '16px',
-              lineHeight: 1.3,
             }}
           >
-            방문예약 고객 <span style={{ color: '#1A9ED4' }}>특별 혜택</span>
+            방문예약 고객 특별 혜택
           </p>
 
-          {/* Benefit cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}>
-
-            {/* 혜택 1 — 사은품 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                background: 'rgba(26,158,212,0.08)',
-                border: '1px solid rgba(26,158,212,0.22)',
-                padding: '13px 16px',
-              }}
-            >
-              <div
-                style={{
-                  width: '38px',
-                  height: '38px',
-                  background: 'rgba(26,158,212,0.14)',
-                  border: '1px solid rgba(26,158,212,0.35)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="1.5" y="7" width="15" height="9.5" stroke="#1A9ED4" strokeWidth="1.2" />
-                  <rect x="4" y="4.5" width="10" height="2.5" stroke="#1A9ED4" strokeWidth="1.2" />
-                  <path d="M9 4.5 C9 4.5 7.5 2.5 6.5 2.5 C5.5 2.5 4.5 3.3 4.5 4.5 C4.5 5.5 5.5 7 9 7" stroke="#1A9ED4" strokeWidth="1.1" fill="none" />
-                  <path d="M9 4.5 C9 4.5 10.5 2.5 11.5 2.5 C12.5 2.5 13.5 3.3 13.5 4.5 C13.5 5.5 12.5 7 9 7" stroke="#1A9ED4" strokeWidth="1.1" fill="none" />
-                  <line x1="9" y1="4.5" x2="9" y2="16.5" stroke="#1A9ED4" strokeWidth="1.1" />
-                </svg>
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.08em',
-                    color: 'rgba(255,255,255,0.48)',
-                    marginBottom: '3px',
-                  }}
-                >
-                  방문예약 후 방문 시
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '1.02rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.03em',
-                    color: '#FFFFFF',
-                    lineHeight: 1,
-                  }}
-                >
-                  <span style={{ color: '#1A9ED4' }}>사은품</span> 증정
-                </p>
-              </div>
-            </div>
-
-            {/* 혜택 2 — 신세계 상품권 */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                background: 'rgba(26,158,212,0.08)',
-                border: '1px solid rgba(26,158,212,0.22)',
-                padding: '13px 16px',
-              }}
-            >
-              <div
-                style={{
-                  width: '38px',
-                  height: '38px',
-                  background: 'rgba(26,158,212,0.14)',
-                  border: '1px solid rgba(26,158,212,0.35)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <rect x="2" y="3.5" width="14" height="9" rx="1" stroke="#1A9ED4" strokeWidth="1.2" />
-                  <line x1="5" y1="7" x2="13" y2="7" stroke="#1A9ED4" strokeWidth="1" />
-                  <line x1="5" y1="9.5" x2="10" y2="9.5" stroke="#1A9ED4" strokeWidth="1" />
-                  <path d="M6 15.5 L9 13.5 L12 15.5" stroke="#1A9ED4" strokeWidth="1.2" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.08em',
-                    color: 'rgba(255,255,255,0.48)',
-                    marginBottom: '3px',
-                  }}
-                >
-                  계약 시
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '1.02rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.03em',
-                    color: '#FFFFFF',
-                    lineHeight: 1,
-                  }}
-                >
-                  <span style={{ color: '#1A9ED4' }}>신세계 상품권</span> 증정
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ── Body ── */}
-        <div style={{ padding: '20px 24px 28px' }}>
-
-          {/* Target badge */}
+          {/* Benefit row 1 */}
           <div
             style={{
               display: 'flex',
-              alignItems: 'flex-start',
-              gap: '10px',
-              background: 'rgba(26,158,212,0.05)',
-              border: '1px solid rgba(26,158,212,0.15)',
-              padding: '12px 14px',
-              marginBottom: '20px',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '14px 0',
+              borderTop: `1px solid ${C.divider}`,
             }}
           >
-            <div
-              style={{
-                flexShrink: 0,
-                background: '#1A9ED4',
-                color: '#FFFFFF',
-                fontFamily: "'Pretendard', sans-serif",
-                fontSize: '0.65rem',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                padding: '3px 11px',
-                borderRadius: '20px',
-                marginTop: '1px',
-              }}
-            >
-              대상
+            <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+              {/* Gift icon — thin stroke */}
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ flexShrink: 0 }}>
+                <rect x="1" y="5" width="11" height="7" stroke={C.textSub} strokeWidth="0.85" />
+                <rect x="3" y="3" width="7" height="2" stroke={C.textSub} strokeWidth="0.85" />
+                <path d="M6.5 3 C6.5 3 5.5 1.5 4.8 1.5 C4 1.5 3.2 2.2 3.2 3 C3.2 3.7 4 5 6.5 5" stroke={C.textSub} strokeWidth="0.8" fill="none" />
+                <path d="M6.5 3 C6.5 3 7.5 1.5 8.2 1.5 C9 1.5 9.8 2.2 9.8 3 C9.8 3.7 9 5 6.5 5" stroke={C.textSub} strokeWidth="0.8" fill="none" />
+                <line x1="6.5" y1="3" x2="6.5" y2="12" stroke={C.textSub} strokeWidth="0.8" />
+              </svg>
+              <span style={{ fontFamily: ff, fontSize: '0.76rem', letterSpacing: '0.04em', color: C.textMid }}>
+                방문예약 후 방문 시
+              </span>
             </div>
-            <p
-              style={{
-                fontFamily: "'Pretendard', sans-serif",
-                fontSize: '0.82rem',
-                letterSpacing: '0.03em',
-                color: 'rgba(13,33,55,0.82)',
-                lineHeight: 1.6,
-                margin: 0,
-              }}
-            >
-              방문예약 시 담당자가 안내 전화 드립니다.
-            </p>
+            <span style={{ fontFamily: ff, fontSize: '0.9rem', fontWeight: 500, letterSpacing: '0.04em', color: C.text, flexShrink: 0 }}>
+              사은품 증정
+            </span>
           </div>
 
-          {/* ── Form / Success ── */}
+          {/* Benefit row 2 */}
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '14px 0',
+              borderTop: `1px solid ${C.divider}`,
+              marginBottom: '0',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+              {/* Voucher icon — thin stroke */}
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" style={{ flexShrink: 0 }}>
+                <rect x="1.5" y="2" width="10" height="7" rx="0.7" stroke={C.textSub} strokeWidth="0.85" />
+                <line x1="3.5" y1="4.5" x2="9.5" y2="4.5" stroke={C.textSub} strokeWidth="0.8" />
+                <line x1="3.5" y1="6.5" x2="7" y2="6.5" stroke={C.textSub} strokeWidth="0.8" />
+                <path d="M4.5 11 L6.5 9.5 L8.5 11" stroke={C.textSub} strokeWidth="0.85" strokeLinejoin="round" />
+              </svg>
+              <span style={{ fontFamily: ff, fontSize: '0.76rem', letterSpacing: '0.04em', color: C.textMid }}>
+                계약 시
+              </span>
+            </div>
+            <span style={{ fontFamily: ff, fontSize: '0.9rem', fontWeight: 500, letterSpacing: '0.04em', color: C.text, flexShrink: 0 }}>
+              신세계 상품권 증정
+            </span>
+          </div>
+
+          <div style={{ height: '1px', background: C.divider }} />
+        </div>
+
+        {/* ── Body ── */}
+        <div style={{ padding: '24px 30px 30px' }}>
+
+          {/* Notice */}
+          <p
+            style={{
+              fontFamily: ff,
+              fontSize: '0.74rem',
+              letterSpacing: '0.04em',
+              color: C.textMid,
+              lineHeight: 1.6,
+              marginBottom: '22px',
+            }}
+          >
+            방문예약 시 담당자가 안내 전화 드립니다.
+          </p>
+
+          {/* Form / Success */}
           {submitted ? (
             <motion.div
               style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '28px 0' }}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.35 }}
             >
               <div
                 style={{
-                  width: '48px',
-                  height: '48px',
-                  border: '1px solid rgba(26,158,212,0.4)',
+                  width: '44px',
+                  height: '44px',
+                  border: `1px solid ${C.divider}`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '18px',
                 }}
               >
-                <Check style={{ color: '#1A9ED4' }} size={22} />
+                <Check size={17} strokeWidth={1.5} style={{ color: C.text }} />
               </div>
               <h3
                 style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '1.35rem',
-                  letterSpacing: '-0.01em',
-                  color: '#0D2137',
+                  fontFamily: ff,
+                  fontSize: '1.18rem',
+                  fontWeight: 400,
+                  letterSpacing: '0.02em',
+                  color: C.text,
                   marginBottom: '10px',
                 }}
               >
@@ -420,11 +309,12 @@ export default function VisitPopup() {
               </h3>
               <p
                 style={{
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.82rem',
+                  fontFamily: ff,
+                  fontSize: '0.76rem',
                   lineHeight: 1.9,
-                  color: 'rgba(13,33,55,0.7)',
-                  marginBottom: '20px',
+                  letterSpacing: '0.04em',
+                  color: C.textMid,
+                  marginBottom: '24px',
                 }}
               >
                 방문 예약 확인 후 담당자가 연락드리겠습니다.
@@ -432,12 +322,12 @@ export default function VisitPopup() {
               <button
                 onClick={() => setIsOpen(false)}
                 style={{
-                  padding: '10px 32px',
-                  background: '#0D2137',
+                  padding: '11px 36px',
+                  background: C.text,
                   color: '#FFFFFF',
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.78rem',
-                  letterSpacing: '0.15em',
+                  fontFamily: ff,
+                  fontSize: '0.72rem',
+                  letterSpacing: '0.2em',
                   border: 'none',
                   cursor: 'pointer',
                 }}
@@ -446,12 +336,12 @@ export default function VisitPopup() {
               </button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
               {/* 방문일시 */}
               <div>
                 <label style={labelStyle}>
-                  방문일시 <span style={{ color: '#1A9ED4' }}>*</span>
+                  방문일시 <span style={{ color: C.accent }}>*</span>
                 </label>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                   <div>
@@ -459,7 +349,7 @@ export default function VisitPopup() {
                       type="date"
                       min="2026-06-13"
                       className="form-input w-full px-3 py-3"
-                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer' }}
+                      style={{ ...inputStyle, cursor: 'pointer' }}
                       value={form.date}
                       onChange={(e) => setForm({ ...form, date: e.target.value })}
                     />
@@ -468,7 +358,7 @@ export default function VisitPopup() {
                   <div>
                     <select
                       className="form-input w-full px-3 py-3"
-                      style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.88rem', cursor: 'pointer', appearance: 'auto' }}
+                      style={{ ...inputStyle, cursor: 'pointer', appearance: 'auto' }}
                       value={form.time}
                       onChange={(e) => setForm({ ...form, time: e.target.value })}
                     >
@@ -480,15 +370,7 @@ export default function VisitPopup() {
                     {errors.time && <p style={errorStyle}>{errors.time}</p>}
                   </div>
                 </div>
-                <p
-                  style={{
-                    fontFamily: "'Pretendard', sans-serif",
-                    fontSize: '0.67rem',
-                    letterSpacing: '0.04em',
-                    color: 'rgba(13,33,55,0.45)',
-                    marginTop: '5px',
-                  }}
-                >
+                <p style={{ fontFamily: ff, fontSize: '0.64rem', letterSpacing: '0.04em', color: C.textSub, marginTop: '5px' }}>
                   ※ 방문예약은 6월 13일부터 가능합니다
                 </p>
               </div>
@@ -496,23 +378,23 @@ export default function VisitPopup() {
               {/* 성함 */}
               <div>
                 <label style={labelStyle}>
-                  성함 <span style={{ color: '#1A9ED4' }}>*</span>
+                  성함 <span style={{ color: C.accent }}>*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="홍길동"
                   className="form-input w-full px-4 py-3"
-                  style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.92rem' }}
+                  style={inputStyle}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
                 {errors.name && <p style={errorStyle}>{errors.name}</p>}
               </div>
 
-              {/* 연락처 (3분할) */}
+              {/* 연락처 */}
               <div>
                 <label style={labelStyle}>
-                  연락처 <span style={{ color: '#1A9ED4' }}>*</span>
+                  연락처 <span style={{ color: C.accent }}>*</span>
                 </label>
                 <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
                   <input
@@ -520,7 +402,7 @@ export default function VisitPopup() {
                     inputMode="numeric"
                     maxLength={3}
                     className="form-input px-3 py-3 text-center"
-                    style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.92rem', width: '62px', flexShrink: 0 }}
+                    style={{ ...inputStyle, width: '62px', flexShrink: 0 }}
                     value={form.phone1}
                     onChange={(e) => {
                       const v = e.target.value.replace(/\D/g, '');
@@ -528,7 +410,7 @@ export default function VisitPopup() {
                       if (v.length === 3) phone2Ref.current?.focus();
                     }}
                   />
-                  <span style={{ color: 'rgba(13,33,55,0.3)', fontSize: '1.1rem', flexShrink: 0 }}>-</span>
+                  <span style={{ color: C.textSub, flexShrink: 0, fontSize: '0.9rem' }}>-</span>
                   <input
                     ref={phone2Ref}
                     type="text"
@@ -536,7 +418,7 @@ export default function VisitPopup() {
                     maxLength={4}
                     placeholder="0000"
                     className="form-input px-3 py-3 text-center"
-                    style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.92rem', flex: 1, minWidth: 0 }}
+                    style={{ ...inputStyle, flex: 1, minWidth: 0 }}
                     value={form.phone2}
                     onChange={(e) => {
                       const v = e.target.value.replace(/\D/g, '');
@@ -544,7 +426,7 @@ export default function VisitPopup() {
                       if (v.length === 4) phone3Ref.current?.focus();
                     }}
                   />
-                  <span style={{ color: 'rgba(13,33,55,0.3)', fontSize: '1.1rem', flexShrink: 0 }}>-</span>
+                  <span style={{ color: C.textSub, flexShrink: 0, fontSize: '0.9rem' }}>-</span>
                   <input
                     ref={phone3Ref}
                     type="text"
@@ -552,7 +434,7 @@ export default function VisitPopup() {
                     maxLength={4}
                     placeholder="0000"
                     className="form-input px-3 py-3 text-center"
-                    style={{ fontFamily: "'Pretendard', sans-serif", fontSize: '0.92rem', flex: 1, minWidth: 0 }}
+                    style={{ ...inputStyle, flex: 1, minWidth: 0 }}
                     value={form.phone3}
                     onChange={(e) => {
                       const v = e.target.value.replace(/\D/g, '');
@@ -564,23 +446,16 @@ export default function VisitPopup() {
               </div>
 
               {/* 개인정보 동의 */}
-              <div style={{ border: '1px solid rgba(26,158,212,0.15)', padding: '14px', background: '#FFFFFF' }}>
+              <div style={{ borderTop: `1px solid ${C.divider}`, paddingTop: '16px' }}>
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    marginBottom: '8px',
+                    marginBottom: '10px',
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "'Pretendard', sans-serif",
-                      fontSize: '0.75rem',
-                      letterSpacing: '0.06em',
-                      color: 'rgba(13,33,55,0.7)',
-                    }}
-                  >
+                  <span style={{ fontFamily: ff, fontSize: '0.7rem', letterSpacing: '0.06em', color: C.textMid }}>
                     개인정보 수집 및 이용 안내
                   </span>
                   <button
@@ -588,18 +463,21 @@ export default function VisitPopup() {
                     onClick={() => setPrivacyOpen(!privacyOpen)}
                     style={{
                       background: 'none',
-                      border: '1px solid rgba(26,158,212,0.3)',
-                      padding: '2px 10px',
+                      border: 'none',
                       cursor: 'pointer',
-                      fontFamily: "'Pretendard', sans-serif",
-                      fontSize: '0.65rem',
-                      letterSpacing: '0.08em',
-                      color: '#1A9ED4',
+                      fontFamily: ff,
+                      fontSize: '0.64rem',
+                      letterSpacing: '0.1em',
+                      color: C.textSub,
+                      padding: 0,
+                      textDecoration: 'underline',
+                      textUnderlineOffset: '3px',
                     }}
                   >
                     {privacyOpen ? '닫기' : '보기'}
                   </button>
                 </div>
+
                 <AnimatePresence>
                   {privacyOpen && (
                     <motion.div
@@ -607,19 +485,19 @@ export default function VisitPopup() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
+                      transition={{ duration: 0.22 }}
                       style={{ overflow: 'hidden' }}
                     >
                       <div
                         style={{
-                          fontFamily: "'Pretendard', sans-serif",
-                          fontSize: '0.62rem',
+                          fontFamily: ff,
+                          fontSize: '0.61rem',
                           letterSpacing: '0.04em',
                           lineHeight: 1.85,
-                          color: 'rgba(13,33,55,0.65)',
+                          color: C.textSub,
                           paddingBottom: '12px',
                           marginBottom: '10px',
-                          borderBottom: '1px solid rgba(26,158,212,0.1)',
+                          borderBottom: `1px solid ${C.divider}`,
                         }}
                       >
                         개인정보 수집 및 이용 안내<br />
@@ -629,57 +507,54 @@ export default function VisitPopup() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
                 <label style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
                   <div
                     style={{
-                      width: '16px',
-                      height: '16px',
-                      border: form.agree ? 'none' : '1px solid rgba(26,158,212,0.35)',
-                      background: form.agree ? '#1A9ED4' : 'transparent',
+                      width: '15px',
+                      height: '15px',
+                      border: form.agree ? 'none' : `1px solid ${C.inputBorder}`,
+                      background: form.agree ? C.text : 'transparent',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       flexShrink: 0,
                       cursor: 'pointer',
-                      transition: 'all 0.2s',
+                      transition: 'all 0.18s',
                     }}
                     onClick={() => setForm({ ...form, agree: !form.agree })}
                   >
-                    {form.agree && <Check size={10} style={{ color: '#FFFFFF' }} strokeWidth={3} />}
+                    {form.agree && <Check size={9} strokeWidth={2.5} style={{ color: '#FFFFFF' }} />}
                   </div>
                   <span
-                    style={{
-                      fontFamily: "'Pretendard', sans-serif",
-                      fontSize: '0.78rem',
-                      color: 'rgba(13,33,55,0.78)',
-                    }}
+                    style={{ fontFamily: ff, fontSize: '0.74rem', letterSpacing: '0.04em', color: C.textMid }}
                     onClick={() => setForm({ ...form, agree: !form.agree })}
                   >
                     개인정보 수집 및 이용에 동의합니다{' '}
-                    <span style={{ color: '#1A9ED4' }}>(필수)</span>
+                    <span style={{ color: C.accent }}>(필수)</span>
                   </span>
                 </label>
                 {errors.agree && (
-                  <p style={{ ...errorStyle, marginLeft: '26px', marginTop: '6px' }}>{errors.agree}</p>
+                  <p style={{ ...errorStyle, marginLeft: '25px', marginTop: '6px' }}>{errors.agree}</p>
                 )}
               </div>
 
-              {/* 제출 버튼 */}
+              {/* Submit */}
               <motion.button
                 type="submit"
                 style={{
                   width: '100%',
-                  padding: '15px',
-                  background: '#0D2137',
+                  padding: '14px',
+                  background: C.text,
                   color: '#FFFFFF',
-                  fontFamily: "'Pretendard', sans-serif",
-                  fontSize: '0.82rem',
-                  letterSpacing: '0.18em',
+                  fontFamily: ff,
+                  fontSize: '0.76rem',
+                  letterSpacing: '0.22em',
                   border: 'none',
                   cursor: 'pointer',
                   marginTop: '2px',
                 }}
-                whileHover={{ backgroundColor: '#1565A0' }}
+                whileHover={{ backgroundColor: '#111111' }}
                 whileTap={{ scale: 0.99 }}
               >
                 모델하우스 방문예약
