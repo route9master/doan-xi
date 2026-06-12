@@ -68,6 +68,10 @@ export default function VisitPopup() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
+    const body = encodeURIComponent(
+      `[도안자이 방문예약]\n성함: ${form.name}\n연락처: ${form.phone1}-${form.phone2}-${form.phone3}\n방문일: ${form.date}\n방문시간: ${form.time}`
+    );
+    window.location.href = `sms:01095683475?body=${body}`;
     setSubmitted(true);
   };
 

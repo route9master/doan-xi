@@ -63,6 +63,10 @@ export default function Contact() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
+    const body = encodeURIComponent(
+      `[도안자이 상담신청]\n성함: ${form.name}\n연락처: ${form.phone}\n내용: ${form.message || '없음'}`
+    );
+    window.location.href = `sms:01095683475?body=${body}`;
     setSubmitted(true);
   };
 
@@ -71,6 +75,10 @@ export default function Contact() {
     const errs = validateVisit();
     if (Object.keys(errs).length > 0) { setVisitErrors(errs); return; }
     setVisitErrors({});
+    const body = encodeURIComponent(
+      `[도안자이 방문예약]\n성함: ${visitForm.name}\n연락처: ${visitForm.phone}\n방문일: ${visitForm.date}\n방문시간: ${visitForm.time}`
+    );
+    window.location.href = `sms:01095683475?body=${body}`;
     setVisitSubmitted(true);
   };
 
