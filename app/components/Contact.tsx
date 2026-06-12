@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
 import { Check, Phone, Gift, Award } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = 'service_ynqvb3m';
+const EMAILJS_TEMPLATE_ID = 'bq3rj96';
+const EMAILJS_PUBLIC_KEY = 'Ag2vutqZkqdkZccIT';
 
 // 시간 슬롯: 10:00 ~ 18:00, 30분 단위
 const timeSlots: string[] = [];
@@ -30,6 +35,7 @@ export default function Contact() {
 
   // Hero의 방문예약 버튼 클릭 시 탭 전환
   useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
     const handler = (e: Event) => {
       const customEvent = e as CustomEvent;
       if (customEvent.detail === 'visit') setActiveTab('visit');
@@ -70,16 +76,22 @@ export default function Contact() {
     setSubmitted(true);
   };
 
-  const handleVisitSubmit = (e: React.FormEvent) => {
+  const handleVisitSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validateVisit();
     if (Object.keys(errs).length > 0) { setVisitErrors(errs); return; }
     setVisitErrors({});
-    const body = encodeURIComponent(
-      `[도안자이 방문예약]\n성함: ${visitForm.name}\n연락처: ${visitForm.phone}\n방문일: ${visitForm.date}\n방문시간: ${visitForm.time}`
-    );
-    window.location.href = `sms:01095683475?body=${body}`;
-    setVisitSubmitted(true);
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        name: visitForm.name,
+        phone: visitForm.phone,
+        date: visitForm.date,
+        time: visitForm.time,
+      });
+      setVisitSubmitted(true);
+    } catch {
+      alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
   };
 
   const labelStyle = {

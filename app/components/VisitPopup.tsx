@@ -3,6 +3,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Check } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = 'service_ynqvb3m';
+const EMAILJS_TEMPLATE_ID = 'bq3rj96';
+const EMAILJS_PUBLIC_KEY = 'Ag2vutqZkqdkZccIT';
 
 const timeSlots: string[] = [];
 for (let h = 10; h <= 18; h++) {
@@ -43,6 +48,7 @@ export default function VisitPopup() {
   const phone3Ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
     const check = () => setIsMobile(window.innerWidth < 640);
     check();
     window.addEventListener('resize', check);
@@ -63,16 +69,22 @@ export default function VisitPopup() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
-    const body = encodeURIComponent(
-      `[도안자이 방문예약]\n성함: ${form.name}\n연락처: ${form.phone1}-${form.phone2}-${form.phone3}\n방문일: ${form.date}\n방문시간: ${form.time}`
-    );
-    window.location.href = `sms:01095683475?body=${body}`;
-    setSubmitted(true);
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        name: form.name,
+        phone: `${form.phone1}-${form.phone2}-${form.phone3}`,
+        date: form.date,
+        time: form.time,
+      });
+      setSubmitted(true);
+    } catch {
+      alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+    }
   };
 
   if (!isOpen) return null;
